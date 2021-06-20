@@ -73,7 +73,7 @@ public class HandZone extends CaptureZone {
 				getArrowWidth());
 		
 		if(!fake) {
-			this.leftArrow.setFill(new ImagePattern(new Image(Main.getResourceDirURL() +  LEFT_ARROW_BCK)));
+			this.leftArrow.setFill(new ImagePattern(new Image(Main.getResourceUrl(LEFT_ARROW_BCK))));
 		}
 
 		this.rightArrow = new HandZoneArrow(
@@ -85,7 +85,7 @@ public class HandZone extends CaptureZone {
 				getArrowWidth());
 
 		if(!fake) {
-			this.rightArrow.setFill(new ImagePattern(new Image(Main.getResourceDirURL() +  RIGHT_ARROW_BCK)));
+			this.rightArrow.setFill(new ImagePattern(new Image(Main.getResourceUrl(RIGHT_ARROW_BCK))));
 		}
 
 		this.reset();

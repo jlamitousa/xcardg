@@ -277,7 +277,7 @@ public class GameMasterServer {
 
 		for(ClientRunnable tmpCr : this.clientRunnables) {
 
-			if(tmpCr.getId() != source.getId()) {
+			if(tmpCr.haveValidId() && tmpCr.getId() != source.getId()) {
 				tmpCr.sendEvent(serializeEvent(data));
 			}
 		}
@@ -301,9 +301,9 @@ public class GameMasterServer {
 		int id = Integer.parseInt(data.get("id"));
 		Map<String, String> respData = new HashMap<String, String>();
 
-		if(id > 0) {
+		if(ClientRunnable.isValidId(id)) {
 
-			if(this.clientRunnables.size() > 1) {
+			if(haveOtherConnectedClientRunnable(cr)) {
 				respData.clear();
 				respData.put("eventType", RemoteEvent.NEW_USER_CON.name());
 				respData.put("id", id+"");
@@ -335,11 +335,11 @@ public class GameMasterServer {
 
 		Map<String, String> respData = new HashMap<String, String>();
 
-		if(this.clientRunnables.size() > 1) {
+		if(haveOtherConnectedClientRunnable(cr)) {
 
 			for(ClientRunnable tmpCr : this.clientRunnables) {
 
-				if(tmpCr != cr && tmpCr.getId() > 0) {
+				if(tmpCr != cr && tmpCr.haveValidId()) {
 
 					respData.clear();
 					respData.put("eventType", RemoteEvent.OLD_USER_CON.name());
@@ -493,13 +493,29 @@ public class GameMasterServer {
 
 	}
 
+	private boolean haveOtherConnectedClientRunnable(ClientRunnable source) {
+		
+		boolean haveOther = false;
+
+		for(ClientRunnable cr : this.clientRunnables) {
+
+			if(cr != source && cr.haveValidId()) {
+				haveOther = true;
+				break;
+			}
+		}
+
+		return haveOther;
+		
+	}
+	
 	private boolean haveAllClientRunnable(ClientRunnable source, List<ClientRunnable> crList) {
 
 		boolean haveAll = true;
 
 		for(ClientRunnable cr : this.clientRunnables) {
 
-			if(cr != source) {
+			if(cr != source && cr.haveValidId()) {
 
 				boolean found = false;
 

@@ -16,7 +16,7 @@ public class ImageDisplayer extends Pane {
 
 	public ImageDisplayer(double width, double height, String imgPath) {
 
-		String bckUrl = Main.getResourceDirURL() + imgPath;
+		String bckUrl = Main.getResourceUrl(imgPath);
 		BackgroundImage bckImg = new BackgroundImage(new Image(bckUrl, width, height, false, true),
 				BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 				BackgroundSize.DEFAULT);

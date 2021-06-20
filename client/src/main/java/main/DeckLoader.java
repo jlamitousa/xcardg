@@ -23,15 +23,14 @@ public class DeckLoader {
 
 	public static void loadDeck(PlayerZone playerZone, HandZone handZone, String deckFilePath, String deckName) throws Exception {
 
-		String resourceDir = Main.getResourceDirURL();
-		String deckFile = resourceDir + "/decks/"+deckFilePath;
+		String deckFile = "/decks/"+deckFilePath;
 		String cardDir = "/content/cards/";
-		String cardDirURL = resourceDir + "/cards/";
+		String cardDirURL = "/cards/";
 
 		PickZone pickZone = playerZone.getPickZone();
 		CommandZone commandZone = playerZone.getCommandZone();
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(new URL(deckFile).openStream()));
+		BufferedReader br = new BufferedReader(new InputStreamReader(new URL(Main.getResourceUrl(deckFile)).openStream()));
 		String line = null;
 		int nbCard = 0;
 		List<Card> wholeDeck = new ArrayList<>();
@@ -58,8 +57,8 @@ public class DeckLoader {
 			c = new Card(
 					"P"+playerZone.getUserId() + "_" + cardProps.get("name") + "_" + (nbCard+1),
 					cardProps.get("name"), 
-					cardDirURL + cardProps.get("name") + ".png", 
-					cardDirURL + cardProps.get("transform_name") + ".png");
+					Main.getResourceUrl(cardDirURL + cardProps.get("name") + ".png"), 
+					Main.getResourceUrl(cardDirURL + cardProps.get("transform_name") + ".png"));
 
 			wholeDeck.add(c);
 			handZone.captureCard(c, false);

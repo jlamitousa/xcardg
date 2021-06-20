@@ -47,6 +47,14 @@ public abstract class ClientRunnable implements Runnable {
 		this.id = id;
 	}
 
+	public static boolean isValidId(int id) {
+		return id > 0;
+	}
+	
+	public boolean haveValidId() {
+		return this.id > 0;
+	}
+	
 	public String getDeckName() {
 		return deckName;
 	}
@@ -100,7 +108,7 @@ public abstract class ClientRunnable implements Runnable {
 	public void sendEvent(String data) {
 		
 		if(LOGGER.isDebugEnabled()) {
-			LOGGER.debug("sending: "+data);
+			LOGGER.debug("("+id+") => sending: "+data);
 		}
 		
 		synchronized (out) {

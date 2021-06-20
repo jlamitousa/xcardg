@@ -1,5 +1,11 @@
 package client.gi;
 
+/**
+ * A class used to save current information of a card before a special move.
+ * Aim to be restored.
+ * @author Jean-Luc
+ *
+ */
 public class CardSnapshot {
 
 	

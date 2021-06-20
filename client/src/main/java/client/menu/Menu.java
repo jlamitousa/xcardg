@@ -102,7 +102,7 @@ public class Menu extends Pane {
 
 	public Menu(double startX, double startY, double width, double height) {
 
-		String bckFullUrl = Main.getResourceDirURL() + BCK_URL;
+		String bckFullUrl = Main.getResourceUrl(BCK_URL);
 		BackgroundImage bckImg = new BackgroundImage(new Image(bckFullUrl, width, height, false, true),
 				BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 				BackgroundSize.DEFAULT);
@@ -476,6 +476,8 @@ public class Menu extends Pane {
 						@Override
 						public void run() {
 
+							LOGGER.info("menuRunLater:runt()");
+							
 							try {
 								uiCallback.callback();
 							} catch(Exception e) {

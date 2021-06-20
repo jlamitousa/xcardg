@@ -35,40 +35,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>com.github.wvengen</groupId>
-        <artifactId>proguard-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>proguard</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <obfuscate>true</obfuscate>
-          <injar>${project.build.finalName}.jar</injar>
-          <outjar>${finalName}.jar</outjar>
-          <options>
-            <option>-target 1.8</option>
-            <option>-dontwarn javax.**</option>
-            <option>-dontwarn com.sun.**</option>
-            <option>-libraryjars ${java.home}/lib/ext/jfxrt.jar</option>
-            <option>-overloadaggressively</option>
-            <option>-repackageclasses 'real.jumanji'</option>
-            <option>-allowaccessmodification</option>
-            <option>-keep public enum actions.**{ *; }</option>
-            <option>-keep class org.apache.log4j.* { *; }</option>
-            <option>-keep public class client.menu.JoueursInfo { *; }</option>
-            <option>-keep public class client.menu.CardInfoData { *; }</option>
-            <option>-keep public class main.Main { *; }</option>
-          </options>
-          <libs>
-            <lib>${java.home}/lib/rt.jar</lib>
-          </libs>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
   <properties>

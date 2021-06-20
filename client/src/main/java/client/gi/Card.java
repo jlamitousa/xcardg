@@ -141,7 +141,7 @@ public class Card extends Rectangle implements Environnement, CornerClickableZon
 		this.isReturnedMode = isReturnedMode;
 
 		if(this.isReturnedMode) {
-			setFill(new ImagePattern(new Image(Main.getResourceDirURL()+CARD_BCK)));
+			setFill(new ImagePattern(new Image(Main.getResourceUrl(CARD_BCK))));
 		} else {
 			setFill(new ImagePattern(new Image(imgPath)));
 		}
@@ -693,6 +693,7 @@ public class Card extends Rectangle implements Environnement, CornerClickableZon
 				LOGGER.error("Invalid action", iae);
 			}
 		} else {
+			this.env.getChildren().remove(this);
 			this.env.getChildren().add(cs.getSavedChildPos(), this);
 		}
 

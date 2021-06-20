@@ -73,7 +73,7 @@ public class GraphicInterface extends Pane implements Environnement {
 
 		GraphicInterface that = this;
 
-		String bckUrl = Main.getResourceDirURL() + BCK_URL;
+		String bckUrl = Main.getResourceUrl(BCK_URL);
 		BackgroundImage bckImg = new BackgroundImage(new Image(bckUrl, width, height, false, true),
 				BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 				BackgroundSize.DEFAULT);
@@ -100,104 +100,127 @@ public class GraphicInterface extends Pane implements Environnement {
 
 			public void handle(MouseEvent me) {
 
-				boolean sendRemote = true;
-				int sourceUserId = -1;
-				boolean doubleClicked = false;
-				MouseAction ma = null;
+				try {
 
-				if(that.gmZone.getPlayerZone1().isMe()) {
-					sourceUserId = that.gmZone.getPlayerZone1().getUserId();
+					boolean sendRemote = true;
+					int sourceUserId = -1;
+					boolean doubleClicked = false;
+					MouseAction ma = null;
+
+					if(that.gmZone.getPlayerZone1().isMe()) {
+						sourceUserId = that.gmZone.getPlayerZone1().getUserId();
+					}
+
+					doubleClicked = me.getButton().equals(MouseButton.PRIMARY) && (me.getClickCount() == 2);
+					ma = new MouseAction(that, sourceUserId,  me.getX(), me.getY(), me.getTarget(), doubleClicked);
+
+					sendRemote = handleMouseClicked(ma, false) && sendRemote;
+
+					if(sendRemote) {
+						sendMouseAction(ma, RemoteEvent.MCLICK);
+					}
+
+				} catch(Exception e) {
+					LOGGER.error("", e);
 				}
 
-				doubleClicked = me.getButton().equals(MouseButton.PRIMARY) && (me.getClickCount() == 2);
-				ma = new MouseAction(that, sourceUserId,  me.getX(), me.getY(), me.getTarget(), doubleClicked);
-
-				sendRemote = handleMouseClicked(ma, false) && sendRemote;
-
-				if(sendRemote) {
-					sendMouseAction(ma, RemoteEvent.MCLICK);
-				}
-			
 			}
-			
+
 		});
 
 		setOnMousePressed(new EventHandler<MouseEvent>() {
 
 			public void handle(MouseEvent me) {
 
-				boolean sendRemote = true;
-				int sourceUserId = -1;
-				boolean doubleClicked = false;
-				MouseAction ma = null;
+				try {
 
-				if(that.gmZone.getPlayerZone1().isMe()) {
-					sourceUserId = that.gmZone.getPlayerZone1().getUserId();
+					boolean sendRemote = true;
+					int sourceUserId = -1;
+					boolean doubleClicked = false;
+					MouseAction ma = null;
+
+					if(that.gmZone.getPlayerZone1().isMe()) {
+						sourceUserId = that.gmZone.getPlayerZone1().getUserId();
+					}
+
+					doubleClicked = me.getButton().equals(MouseButton.PRIMARY) && (me.getClickCount() == 2);
+					ma = new MouseAction(that, sourceUserId,  me.getX(), me.getY(), me.getTarget(), doubleClicked);
+
+					sendRemote = handleMousePressed(ma, false) && sendRemote;
+
+					if(sendRemote) {
+						sendMouseAction(ma, RemoteEvent.MPRESSED);
+					}
+
+				} catch(Exception e) {
+					LOGGER.error("", e);
 				}
 
-				doubleClicked = me.getButton().equals(MouseButton.PRIMARY) && (me.getClickCount() == 2);
-				ma = new MouseAction(that, sourceUserId,  me.getX(), me.getY(), me.getTarget(), doubleClicked);
-
-				sendRemote = handleMousePressed(ma, false) && sendRemote;
-
-				if(sendRemote) {
-					sendMouseAction(ma, RemoteEvent.MPRESSED);
-				}
-			
 			}
-		
+
 		});
 
 		setOnMouseDragged(new EventHandler<MouseEvent>() {
 
 			public void handle(MouseEvent me) {
 
-				boolean sendRemote = true;
-				int sourceUserId = -1;
-				boolean doubleClicked = false;
-				MouseAction ma = null;
+				try {
 
-				if(that.gmZone.getPlayerZone1().isMe()) {
-					sourceUserId = that.gmZone.getPlayerZone1().getUserId();
+					boolean sendRemote = true;
+					int sourceUserId = -1;
+					boolean doubleClicked = false;
+					MouseAction ma = null;
+
+					if(that.gmZone.getPlayerZone1().isMe()) {
+						sourceUserId = that.gmZone.getPlayerZone1().getUserId();
+					}
+
+					doubleClicked = me.getButton().equals(MouseButton.PRIMARY) && (me.getClickCount() == 2);
+					ma = new MouseAction(that, sourceUserId,  me.getX(), me.getY(), me.getTarget(), doubleClicked);
+
+					sendRemote = handleMouseDragged(ma, false) && sendRemote;
+
+					if(sendRemote) {
+						sendMouseAction(ma, RemoteEvent.MDRAGGED);
+					}
+
+				}  catch(Exception e) {
+					LOGGER.error("", e);
 				}
 
-				doubleClicked = me.getButton().equals(MouseButton.PRIMARY) && (me.getClickCount() == 2);
-				ma = new MouseAction(that, sourceUserId,  me.getX(), me.getY(), me.getTarget(), doubleClicked);
-
-				sendRemote = handleMouseDragged(ma, false) && sendRemote;
-
-				if(sendRemote) {
-					sendMouseAction(ma, RemoteEvent.MDRAGGED);
-				}
-			
 			}
-		
+
 		});
 
 		setOnMouseReleased(new EventHandler<MouseEvent>() {
 
 			public void handle(MouseEvent me) {
 
-				boolean sendRemote = true;
-				int sourceUserId = -1;
-				boolean doubleClicked = false;
-				MouseAction ma = null;
+				try {
 
-				if(that.gmZone.getPlayerZone1().isMe()) {
-					sourceUserId = that.gmZone.getPlayerZone1().getUserId();
+					boolean sendRemote = true;
+					int sourceUserId = -1;
+					boolean doubleClicked = false;
+					MouseAction ma = null;
+
+					if(that.gmZone.getPlayerZone1().isMe()) {
+						sourceUserId = that.gmZone.getPlayerZone1().getUserId();
+					}
+
+					doubleClicked = me.getButton().equals(MouseButton.PRIMARY) && (me.getClickCount() == 2);
+					ma = new MouseAction(that, sourceUserId,  me.getX(), me.getY(), me.getTarget(), doubleClicked);
+
+					sendRemote = handleMouseReleased(ma, false) && sendRemote;
+
+					if(sendRemote) {
+						sendMouseAction(ma, RemoteEvent.MRELEASE);
+					}
+
+				}  catch(Exception e) {
+					LOGGER.error("", e);
 				}
-
-				doubleClicked = me.getButton().equals(MouseButton.PRIMARY) && (me.getClickCount() == 2);
-				ma = new MouseAction(that, sourceUserId,  me.getX(), me.getY(), me.getTarget(), doubleClicked);
-
-				sendRemote = handleMouseReleased(ma, false) && sendRemote;
-
-				if(sendRemote) {
-					sendMouseAction(ma, RemoteEvent.MRELEASE);
-				}
-			
 			}
-		
+
 		});
 
 		this.currentlyCardCapturing = null;
@@ -280,6 +303,8 @@ public class GraphicInterface extends Pane implements Environnement {
 
 			@Override 
 			public void run() {
+
+				LOGGER.info("handleServerMsg:run()");
 
 				try {
 
@@ -398,27 +423,27 @@ public class GraphicInterface extends Pane implements Environnement {
 		boolean sendRemote = true;
 
 		if(isPileDisplayMode() && ma.getTarget() instanceof Card) {
-			
+
 			try {
-				
+
 				Card c = (Card) ma.getTarget();
-				
+
 				pileDisplayer.remove(c);
 				this.hdZone.captureCard(c, true);
 				sendCapture(c.getCardId());
-				
+
 			} catch(InvalidActionException iae) {
 				LOGGER.error("Invalid action", iae);
 			}
-			
+
 		} else {
-			
+
 			sendRemote = this.hdZone.handleMouseClicked(ma, remote) && sendRemote;
 			sendRemote = this.gmZone.handleMouseClicked(ma, remote) && sendRemote;
-			
+
 		}
-		
-	
+
+
 		return !remote && sendRemote;
 
 	}
@@ -456,7 +481,7 @@ public class GraphicInterface extends Pane implements Environnement {
 		sendRemote = this.hdZone.handleMouseReleased(ma, remote) && sendRemote;
 
 		putInFront(this.hdZone);
-		
+
 		return !remote && sendRemote;
 
 	} 
@@ -482,15 +507,15 @@ public class GraphicInterface extends Pane implements Environnement {
 		int id = Integer.parseInt(data.get("id"));
 
 		if(id > 0) {
-			
+
 			PlayerZone pz1 = this.gmZone.getPlayerZone1();
-			
+
 			this.hdZone.setRelatedPZ(pz1);
 			pz1.setUserId(id);
 			pz1.setIsMe(true);
 			this.menu.refreshUsersInfosTable();	
 			sendAcknowledge(RemoteEvent.ID_ASSIGNATION_OK);
-			
+
 		}
 
 	}
@@ -549,7 +574,7 @@ public class GraphicInterface extends Pane implements Environnement {
 			pickZone.sort(deckOrder);
 			getXCard(pickZone, playerZone, 7);
 			displayImg("/"+deckName+".png", USER_COME_DURATION_SEC);
-			
+
 			this.menu.refreshUsersInfosTable();
 
 		} catch(Exception e) {
@@ -597,47 +622,47 @@ public class GraphicInterface extends Pane implements Environnement {
 	}
 
 	private void handleSort(Map<String, String> data) {
-		
+
 		int sourceId = Integer.parseInt(data.get("id"));
 		PlayerZone playerZone = this.gmZone.findPlayerZone(sourceId);
-		
+
 		try {
-			
+
 			playerZone.getPickZone().sort(data.get("order"));	
-			
+
 		} catch(InvalidActionException iae) {
 			LOGGER.error("Invalid action", iae);
 		}
 
 		refreshMenuData();
-		
+
 	}
-	
+
 	private void handleMulligan(Map<String, String> data) {
-		
+
 		int sourceId = Integer.parseInt(data.get("id"));
 		PlayerZone playerZone = this.gmZone.findPlayerZone(sourceId);
-		
+
 		try {
-			
+
 			playerZone.getOppenentHandZone().putHandInPickZone(playerZone);
 			playerZone.getPickZone().sort(data.get("order"));	
-			
+
 		} catch(InvalidActionException iae) {
 			LOGGER.error("Invalid action", iae);
 		}
 
 		refreshMenuData();
-		
+
 	}
-	
+
 	private void handlePickOne(Map<String, String> data) {
-		
+
 		int sourceId = Integer.parseInt(data.get("id"));
 		PlayerZone playerZone = this.gmZone.findPlayerZone(sourceId);
-		
+
 		try {
-			
+
 			playerZone.getOppenentHandZone().captureCard(playerZone.getPickZone().getFirst(), false);
 
 		} catch(InvalidActionException iae) {
@@ -645,19 +670,19 @@ public class GraphicInterface extends Pane implements Environnement {
 		}
 
 		refreshMenuData();
-		
+
 	}
-	
+
 	private void handleCapture(Map<String, String> data) {
-		
+
 		int sourceId = Integer.parseInt(data.get("id"));
 		PlayerZone playerZone = this.gmZone.findPlayerZone(sourceId);
 		String cardId = data.get("card_id");
-		
+
 		try {
-			
+
 			Card c = playerZone.find(cardId);
-			
+
 			if(c != null) {
 				playerZone.getOppenentHandZone().captureCard(c, false);
 			}
@@ -667,16 +692,16 @@ public class GraphicInterface extends Pane implements Environnement {
 		}
 
 		refreshMenuData();
-		
+
 	}
-	
+
 	private void handleCreateToken(Map<String, String> data) {
-		
+
 		int sourceId = Integer.parseInt(data.get("id"));
 		PlayerZone playerZone = this.gmZone.findPlayerZone(sourceId);
-		
+
 		try {
-			
+
 			playerZone.createToken(true);
 
 		} catch(InvalidActionException iae) {
@@ -684,9 +709,9 @@ public class GraphicInterface extends Pane implements Environnement {
 		}
 
 		refreshMenuData();
-		
+
 	}
-	
+
 	private void handleMouseAction(Map<String, String> data) {
 
 		int sourceId = Integer.parseInt(data.get("id"));
@@ -749,43 +774,43 @@ public class GraphicInterface extends Pane implements Environnement {
 
 
 	public void sendNewUserConOK(int targetId) {
-		
+
 		Map<String, String> data = new HashMap<String, String>();
 		int userId = this.gmZone.getPlayerZone1().getUserId();
-		
+
 		data.put("eventType", RemoteEvent.NEW_USER_CON_OK.name());
 		data.put("id", userId+"");
 		data.put("target_id", targetId+"");
-		
+
 		this.eHandler.sendEvent(data);
-		
+
 	}
-	
+
 	public void sendOldUserConOK(int targetId) {
-		
+
 		Map<String, String> data = new HashMap<String, String>();
 		int userId = this.gmZone.getPlayerZone1().getUserId();
-		
+
 		data.put("eventType", RemoteEvent.OLD_USER_CON_OK.name());
 		data.put("id", userId+"");
 		data.put("target_id", targetId+"");
-		
+
 		this.eHandler.sendEvent(data);
-		
+
 	}
-	
+
 	private void sendAcknowledge(RemoteEvent re) {
-		
+
 		Map<String, String> data = new HashMap<String, String>();
 		int userId = this.gmZone.getPlayerZone1().getUserId();
-		
+
 		data.put("eventType", re.name());
 		data.put("id", userId+"");
-		
+
 		this.eHandler.sendEvent(data);
-		
+
 	}
-	
+
 	public void sendServerDeckLoad(int userId, String deckPath, String deckName, String deckOrder) {
 
 		if(firstConDone && !isEventBlocked) {
@@ -846,7 +871,7 @@ public class GraphicInterface extends Pane implements Environnement {
 			int userId = this.gmZone.getPlayerZone1().getUserId();
 			String eventType = RemoteEvent.MULLIGAN.name();
 			PickZone pickZone = this.gmZone.getPlayerZone1().getPickZone();
-			
+
 			data.put("eventType", eventType);
 			data.put("id", userId+"");
 			data.put("order", pickZone.serialize());
@@ -856,16 +881,16 @@ public class GraphicInterface extends Pane implements Environnement {
 		}
 
 	}
-	
+
 	public void sendSort() {
-		
+
 		if(firstConDone && !isEventBlocked) {
 
 			Map<String, String> data = new HashMap<String, String>();
 			int userId = this.gmZone.getPlayerZone1().getUserId();
 			String eventType = RemoteEvent.SORT.name();
 			PickZone pickZone = this.gmZone.getPlayerZone1().getPickZone();
-			
+
 			data.put("eventType", eventType);
 			data.put("id", userId+"");
 			data.put("order", pickZone.serialize());
@@ -873,44 +898,44 @@ public class GraphicInterface extends Pane implements Environnement {
 			this.eHandler.sendEvent(data);
 
 		}
-		
+
 	}
-	
+
 	public void sendPick() {
-		
+
 		if(firstConDone && !isEventBlocked) {
 
 			Map<String, String> data = new HashMap<String, String>();
 			int userId = this.gmZone.getPlayerZone1().getUserId();
 			String eventType = RemoteEvent.PICK.name();
-			
+
 			data.put("id", userId+"");
 			data.put("eventType", eventType);
-			
+
 			this.eHandler.sendEvent(data);
 
 		}
-		
+
 	}
-	
+
 	public void sendCapture(String cardId) {
-		
+
 		if(firstConDone && !isEventBlocked) {
 
 			Map<String, String> data = new HashMap<String, String>();
 			int userId = this.gmZone.getPlayerZone1().getUserId();
 			String eventType = RemoteEvent.PICK.name();
-			
+
 			data.put("id", userId+"");
 			data.put("eventType", eventType);
 			data.put("card_id", cardId);
-			
+
 			this.eHandler.sendEvent(data);
 
 		}
-		
+
 	}
-	
+
 	public void sendCreateToken() {
 
 		if(firstConDone && !isEventBlocked) {
@@ -918,7 +943,7 @@ public class GraphicInterface extends Pane implements Environnement {
 			Map<String, String> data = new HashMap<String, String>();
 			int userId = this.gmZone.getPlayerZone1().getUserId();
 			String eventType = RemoteEvent.CTOKEN.name();
-			
+
 			data.put("eventType", eventType);
 			data.put("id", userId+"");
 
@@ -927,7 +952,7 @@ public class GraphicInterface extends Pane implements Environnement {
 		}
 
 	}
-	
+
 	public void sendMouseAction(MouseAction ma, RemoteEvent action) {
 
 		if(firstConDone && !isEventBlocked) {
@@ -1025,7 +1050,7 @@ public class GraphicInterface extends Pane implements Environnement {
 	public boolean isPileDisplayMode() {
 		return getChildren().contains(this.pileDisplayer);
 	}
-	
+
 	@Override
 	public void displayGame() throws InvalidActionException {
 
@@ -1037,7 +1062,7 @@ public class GraphicInterface extends Pane implements Environnement {
 		this.getChildren().addAll(oppHZs);
 		this.getChildren().add(this.gmZone);
 		this.getChildren().add(this.hdZone);
-		
+
 	}
 
 	@Override
@@ -1065,6 +1090,8 @@ public class GraphicInterface extends Pane implements Environnement {
 						@Override 
 						public void run() {
 
+							LOGGER.info("displayImg:run()");
+
 							List<HandZone> oppHZs = getOpponentsHZ();
 
 							imgDisplayer = new ImageDisplayer(getWidth(), getHeight(), img);
@@ -1088,6 +1115,7 @@ public class GraphicInterface extends Pane implements Environnement {
 
 												try {
 
+													LOGGER.info("displayGame:run()");
 													displayGame();
 													Thread.sleep(MINIMAL_TIME_BETWEEN_PLAYER_COMES_SEC*1000);
 													isImgDisplayed = false;
@@ -1363,12 +1391,12 @@ public class GraphicInterface extends Pane implements Environnement {
 	public Card getCurrentlyZoomedCard() {
 		return this.currentlyZoomedCard;
 	}
-	
+
 	@Override
 	public void setCurrentlyZoomedCard(Card c) throws InvalidActionException {
 		this.currentlyZoomedCard = c;
 	}
-	
+
 	@Override
 	public PlayerZone getRelatedPZ() {
 		return null;
@@ -1532,7 +1560,7 @@ public class GraphicInterface extends Pane implements Environnement {
 				.stream()
 				.filter(hz -> (hz != this.hdZone))
 				.collect(Collectors.toList());
-		
+
 	}
 
 	public void setChildrenPosition() {
@@ -1551,7 +1579,7 @@ public class GraphicInterface extends Pane implements Environnement {
 			getChildren().remove(hz);
 			getChildren().add(0, hz);
 		}
-		
+
 	}
 
 	@Override

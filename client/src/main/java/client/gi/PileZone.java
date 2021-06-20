@@ -27,7 +27,7 @@ public class PileZone extends Pile {
 		
 		LOGGER = LoggerFactory.getLogger("PileZone");
 		
-		String bckUrl = Main.getResourceDirURL() + BCK_URL;
+		String bckUrl = Main.getResourceUrl(BCK_URL);
 		BackgroundImage bckImg = new BackgroundImage(new Image(bckUrl, env.getWidth()*WIDTH_PERCENT, env.getHeight()*HEIGHT_PERCENT, false, true),
 				BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 				BackgroundSize.DEFAULT);

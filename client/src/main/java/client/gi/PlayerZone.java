@@ -94,13 +94,13 @@ public class PlayerZone extends Pane implements Environnement, CornerClickableZo
 
 		if(this.isMirrored) {
 
-			bckImg = new BackgroundImage(new Image(Main.getResourceDirURL() + PLAYER_ZONE_BCK_MIRROR, this.getWidth(), this.getHeight(), false, true),
+			bckImg = new BackgroundImage(new Image(Main.getResourceUrl(PLAYER_ZONE_BCK_MIRROR), this.getWidth(), this.getHeight(), false, true),
 					BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 					BackgroundSize.DEFAULT);
 
 		} else {
 
-			bckImg = new BackgroundImage(new Image(Main.getResourceDirURL() + PLAYER_ZONE_BCK, this.getWidth(), this.getHeight(), false, true),
+			bckImg = new BackgroundImage(new Image(Main.getResourceUrl(PLAYER_ZONE_BCK), this.getWidth(), this.getHeight(), false, true),
 					BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 					BackgroundSize.DEFAULT);
 
@@ -716,15 +716,14 @@ public class PlayerZone extends Pane implements Environnement, CornerClickableZo
 
 	public void createToken(boolean remote) throws InvalidActionException {
 
-		String resourceDir = Main.getResourceDirURL();
-		String cardDirURL = resourceDir + "/cards/";
+		String cardDirURL = "/cards/";
 		Point cardRelMiddlePZ = null;
 
 		Card c = new Card(
 				"P"+getUserId() + "_TOKEN_" + (this.tokenCount)+"__"+(wholeDeck.size()+1),
 				"_TOKEN_" + (this.tokenCount++), 
-				cardDirURL + "default_token.png", 
-				cardDirURL + "default_token.png");
+				Main.getResourceUrl(cardDirURL + "default_token.png"), 
+				Main.getResourceUrl(cardDirURL + "default_token.png"));
 
 		getHandZone().captureCard(c, false);
 		wholeDeck.add(c);

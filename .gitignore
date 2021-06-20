@@ -1,0 +1,9 @@
+/.metadata/
+RemoteSystemsTempFiles/
+/.recommenders/
+.sonarlint/
+specs/tasks/~$xcardg_tasks.xlsx
+unity_tests/TestMobileGame/Temp
+unity_tests/TestMobileGame/Builds
+unity_tests/TestMobileGame/.vs
+unity_tests/TestMobileGame/obj

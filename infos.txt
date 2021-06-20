@@ -1,0 +1,6 @@
+C:\Program Files\Unity\Hub\Editor\2019.4.7f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools
+
+C:\Users\Jean-Luc\AppData\Local\Android\Sdk\platform-tools
+
+
+adb logcat -s Unity PackageManager dalvikvm DEBUG > adb.log
